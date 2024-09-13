@@ -1,0 +1,20 @@
+from django.db import models
+
+# Create your models here.
+class Department(models.Model):
+    name = models.CharField(max_length=255)
+
+    
+    def __str__(self):
+        return self.name
+
+class Employee(models.Model):
+    name = models.CharField(max_length=255)
+    dept = models.ForeignKey(Department, on_delete=models.CASCADE)
+    job_title = models.CharField(max_length=255)
+    salary = models.DecimalField(max_digits=10,decimal_places=2)
+    bonus = models.DecimalField(max_digits=10,decimal_places = 2,null = True,blank = True)
+
+    def __str__(self):
+            return f'Name={self.name},Job={self.job_title},department={self.dept},salary={self.salary},bonus={self.bonus}'
+    
